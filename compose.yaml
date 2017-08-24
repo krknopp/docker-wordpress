@@ -1,0 +1,33 @@
+  example_com:
+    container_name: example_com
+    image: codekoalas/wordpress-legacy
+    environment:
+      VIRTUAL_HOST: .example.com
+      GIT_REPO: https://github.com/account/repo.git
+      GIT_BRANCH: master
+      MYSQL_SERVER: localhost
+      MYSQL_DATABASE: example_com
+      MYSQL_USER: example_com
+      MYSQL_PASSWORD: password1
+      WORDPRESS_HTTPS: "on"
+      WP_SITEURL: "http://example.com"
+      WP_HOME: "http://example.com"
+      APACHE_DOCROOT: /var/www/site/docroot
+      CONF_REPO:
+      CONF_REPO_BRANCH: master
+      SESAuthUser: "AuthUser=ACCESSID"
+      SESAuthPass: "AuthPass=ACCESSIDSECRET"
+      SESmailhub: "mail.server.com:25"
+      PRODUCTION: "true"
+      WWW: "false"
+      AUTH_SALT: "replace this with your own keys"
+      NONCE_SALT: "replace this with your own keys"
+      AUTH_KEY: "replace this with your own keys"
+      SECURE_AUTH_KEY: "replace this with your own keys"
+      NONCE_KEY: "replace this with your own keys"
+      LOGGED_IN_SALT: "replace this with your own keys"
+      LOGGED_IN_KEY: "replace this with your own keys"
+      SECURE_AUTH_SALT: "replace this with your own keys"
+    volumes:
+    - /mnt/efs/example_com:/mnt/sites-files
+    restart: always

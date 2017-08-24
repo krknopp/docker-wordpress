@@ -1,0 +1,3 @@
+[template]
+src = "wordpress.settings.tmpl"
+dest = "/root/apache_docroot/wp-config.php"
