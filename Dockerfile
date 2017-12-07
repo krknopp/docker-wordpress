@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y \
 	php-apcu php-console-table php-pear php7.0-ldap \
 	php7.0-fpm php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-gd php7.0-gmp php7.0-mcrypt php7.0-mysql \
-	libcurl4-openssl-dev libxml2-dev mime-support unzip \
+	libcurl4-openssl-dev libxml2-dev mime-support unzip vim \
 	apache2 \
 	ca-certificates curl supervisor git cron mysql-client ssmtp \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
