@@ -1,8 +1,8 @@
-# docker-drupal8
+# docker-wordpress
 
-Custom build for Code Koalas' Legacy Drupal deployments.  
+Custom build for Wordpress deployments.  
 
-Consists of Ubuntu 14.04, PHP5.5.9 (FPM) and Apache 2.4.
+Consists of Ubuntu 16.04, PHP7.0 (FPM) and Apache 2.4.
 
 # Environment variables
 * VIRTUAL_HOST= FQDN of website with a "." at the beginning
@@ -15,8 +15,10 @@ Consists of Ubuntu 14.04, PHP5.5.9 (FPM) and Apache 2.4.
 * MYSQL_DATABASE= MySQL database name
 * MYSQL_USER= MySQL user name
 * MYSQL_PASSWORD= MySQL password
-* DRUPAL_BASE_URL= Base URL for Drupal config
-* DRUPAL_HTTPS= Set to on or off
+* WP_HTTPS= on or off
+* WP_HOME= FQDN
+* WP_SITEURL= FQDN
+
 * APACHE_DOCROOT= Apache Docroot - defaults to `/var/www/site/docroot`
 * SESAuthUser= AWS SES SMTP username starting with 'AuthUser='
 * SESAuthPass= AWS SES SMTP password starting with 'AuthPass='
