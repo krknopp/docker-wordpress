@@ -32,9 +32,9 @@ COPY confd /etc/confd/
 COPY apache2.conf /etc/apache2/apache2.conf
 
 # Copy in specific files
-COPY wwwsite.conf wordpress-settings.sh crons.conf start.sh load-configs.sh mysqlimport.sh mysqlexport.sh xdebug-php.ini /root/
+COPY config /root/
 COPY bash_aliases /root/.bash_aliases
-COPY wordpress-settings /root/wordpress-settings/
+#COPY wordpress-settings /root/wordpress-settings/
 
 # Volumes
 VOLUME /var/www/site /etc/apache2/sites-enabled /mnt/sites-files

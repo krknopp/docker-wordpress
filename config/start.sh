@@ -12,7 +12,7 @@ grep -q -F "$GIT_HOSTS" /etc/hosts  || echo $GIT_HOSTS >> /etc/hosts
 
 # Add cron jobs
 if [[ ! -n "$PRODUCTION" || $PRODUCTION != "true" ]] ; then
-  sed -i "/git pull/s/[0-9]\+/5/" /root/crons.conf
+  sed -i "/git pull/s/[0-9]\+/5/" /root/config/crons.conf
 fi
 
 # Clone repo to container
@@ -25,20 +25,19 @@ chown www-data:www-data -R /mnt/sites-files/public
 chown www-data:www-data -R /mnt/sites-files/private
 mkdir -p $APACHE_DOCROOT/sites/default
 cd $APACHE_DOCROOT/wp-content && ln -sf /mnt/sites-files/public uploads
-#cd /var/www/site/ && ln -sf /mnt/sites-files/private private
 
 if [[ -n "$LOCAL" &&  $LOCAL = "true" ]] ; then
   echo "[$(date +"%Y-%m-%d %H:%M:%S:%3N %Z")] NOTICE: Setting up XDebug based on state of LOCAL envvar"
   /usr/bin/apt-get update && apt-get install -y \
     php7.0-xdebug \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
-  cp /root/xdebug-php.ini /etc/php/7.0/fpm/php.ini
+  cp /root/config/xdebug-php.ini /etc/php/7.0/fpm/php.ini
   /usr/bin/supervisorctl restart php-fpm
 fi
 
 # Install appropriate apache config and restart apache
 if [[ -n "$WWW" &&  $WWW = "true" ]] ; then
-  cp /root/wwwsite.conf /etc/apache2/sites-enabled/000-default.conf
+  cp /root/config/wwwsite.conf /etc/apache2/sites-enabled/000-default.conf
 fi
 
 # Import starter.sql, if needed
@@ -60,5 +59,5 @@ fi
 chmod 640 /var/log/php7.0-fpm.log
 chown www-data:www-data /var/log/php7.0-fpm.log
 
-crontab /root/crons.conf
+crontab /root/config/crons.conf
 /usr/bin/supervisorctl restart apache2
