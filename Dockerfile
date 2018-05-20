@@ -23,6 +23,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
 
+# Add line to crontab to prevent mail from being sent
+RUN sed -i '/SHELL/iMAILTO=""' /etc/crontab
+
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY www.conf /etc/php/7.0/fpm/pool.d/www.conf
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
