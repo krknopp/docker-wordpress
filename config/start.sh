@@ -47,6 +47,7 @@ fi
 # Create Wordpress settings, if they don't exist as a symlink
 ln -s $APACHE_DOCROOT /root/apache_docroot
 /root/wordpress-settings.sh
+chown www-data:www-data -R /var/www/site
 
 # Load configs
 /root/load-configs.sh
