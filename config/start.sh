@@ -30,9 +30,9 @@ cd $APACHE_DOCROOT/wp-content && ln -sf /mnt/sites-files/public uploads
 if [[ -n "$LOCAL" &&  $LOCAL = "true" ]] ; then
   echo "[$(date +"%Y-%m-%d %H:%M:%S:%3N %Z")] NOTICE: Setting up XDebug based on state of LOCAL envvar"
   /usr/bin/apt-get update && apt-get install -y \
-    php7.0-xdebug \
+    php7.2-xdebug \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
-  cp /root/config/xdebug-php.ini /etc/php/7.0/fpm/php.ini
+  cp /root/config/xdebug-php.ini /etc/php/7.2/fpm/php.ini
   /usr/bin/supervisorctl restart php-fpm
 fi
 
@@ -57,8 +57,8 @@ if [[ -n "$PRODUCTION" && $PRODUCTION = "true" ]] ; then
 fi
 
 # set permissions on php log
-chmod 640 /var/log/php7.0-fpm.log
-chown www-data:www-data /var/log/php7.0-fpm.log
+chmod 640 /var/log/php7.2-fpm.log
+chown www-data:www-data /var/log/php7.2-fpm.log
 
 crontab /root/config/crons.conf
 /usr/bin/supervisorctl restart apache2

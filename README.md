@@ -2,7 +2,7 @@
 
 Custom build for Wordpress deployments.  
 
-Consists of Ubuntu 16.04, PHP7.0 (FPM) and Apache 2.4.
+Consists of Ubuntu 18.04, PHP7.2 (FPM) and Apache 2.4.
 
 # Environment variables
 * VIRTUAL_HOST= FQDN of website with a "." at the beginning
