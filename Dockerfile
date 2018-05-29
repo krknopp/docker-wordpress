@@ -1,8 +1,10 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
+
+RUN echo "UTC" > /etc/localtime
 
 RUN apt-get update && apt-get install -y \
-	php-apcu php-console-table php-pear php7.0-ldap \
-	php7.0-fpm php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-gd php7.0-gmp php7.0-mcrypt php7.0-mysql \
+	php-apcu php-console-table php-pear php7.2-ldap \
+	php7.2-fpm php7.2-cli php7.2-common php7.2-curl php7.2-dev php7.2-gd php7.2-gmp php7.2-mysql \
 	libcurl4-openssl-dev libxml2-dev mime-support unzip vim \
 	apache2 \
 	ca-certificates curl supervisor git cron mysql-client ssmtp \
@@ -27,9 +29,9 @@ RUN chmod +x /usr/local/bin/confd
 RUN sed -i '/SHELL/iMAILTO=""' /etc/crontab
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY www.conf /etc/php/7.0/fpm/pool.d/www.conf
+COPY www.conf /etc/php/7.2/fpm/pool.d/www.conf
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
-COPY php.ini /etc/php/7.0/fpm/php.ini
+COPY php.ini /etc/php/7.2/fpm/php.ini
 COPY remoteip.conf /etc/apache2/conf-enabled/remoteip.conf
 COPY confd /etc/confd/
 COPY apache2.conf /etc/apache2/apache2.conf
