@@ -17,6 +17,7 @@ fi
 
 # Clone repo to container
 git clone --depth=1 -b $GIT_BRANCH $GIT_REPO /var/www/site/
+chown www-data:www-data -R /var/www/site
 
 # Symlink files folder
 mkdir -p /mnt/sites-files/public
